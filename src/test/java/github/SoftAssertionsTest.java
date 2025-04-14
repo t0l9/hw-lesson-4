@@ -27,8 +27,8 @@ public class SoftAssertionsTest {
         $$("a.internal.present").findBy(text("Soft assertions"))
                 .shouldBe(visible).click();
 
-        $(".markdown-body").$$("ol li").findBy(text("JUnit5"))
-                .shouldHave(text("JUnit5"));
+        $(".markdown-body").$$("ol li").findBy(text("JUnit5 extension"))
+                .shouldHave(text("JUnit5 extension"));
 
 
     }
