@@ -15,7 +15,7 @@ public class SoftAssertionsTest {
     @BeforeAll
     static void beforeAll(){
         Configuration.browserSize = "1920x1080";
-        //Configuration.baseUrl = "https://github.com/";
+        Configuration.baseUrl = "https://github.com/";
         Configuration.pageLoadStrategy = "eager";
     }
 
@@ -28,8 +28,17 @@ public class SoftAssertionsTest {
         $$("a.internal.present").findBy(text("Soft assertions"))
                 .shouldBe(visible).click();
 
-        $$(".highlight.highlight-source-java").findBy(text("@ExtendWith({SoftAssertsExtension.class})"))
-                .shouldBe(visible);
+        $$(".highlight.highlight-source-java").findBy(text("@ExtendWith({SoftAssertsExtension.class})\n" +
+                        "class Tests {\n" +
+                        "  @Test\n" +
+                        "  void test() {\n" +
+                        "    Configuration.assertionMode = SOFT;\n" +
+                        "    open(\"page.html\");\n" +
+                        "\n" +
+                        "    $(\"#first\").should(visible).click();\n" +
+                        "    $(\"#second\").should(visible).click();\n" +
+                        "  }\n" +
+                        "}")).shouldBe(visible);
 
     }
 }
