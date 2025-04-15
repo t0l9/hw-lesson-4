@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
@@ -27,8 +28,9 @@ public class SoftAssertionsTest {
         $$("a.internal.present").findBy(text("Soft assertions"))
                 .shouldBe(visible).click();
 
-        $(".markdown-body").$$("ol li").findBy(text("JUnit5 extension"))
-                .shouldHave(text("JUnit5 extension"));
+        $$(".highlight.highlight-source-java").findBy(text("@ExtendWith({SoftAssertsExtension.class})"))
+                .shouldBe(visible);
+
 
 
     }
